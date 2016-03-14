@@ -407,6 +407,10 @@ th {
 }
 #chart svg .candidate .name {
   text-anchor: start;
+  font-weight: normal;
+}
+#chart svg text {
+  text-rendering: optimizeLegibility;
 }
 #chart svg path {
   clip-path: url("#clip");
@@ -443,4 +447,8 @@ th {
 }
 #chart svg .events text {
   font-size: 12px;
+}
+#chart svg .events .box {
+  fill: #FFF;
+  opacity: 0.75;
 }

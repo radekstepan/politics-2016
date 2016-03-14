@@ -159,14 +159,23 @@ export default React.createClass({
         'x2': xC,
 				'y1': height,
 				'y2': yC })
-			.attr("class", "eventLine");
+			.attr("class", "line");
 
-    	evts.append("text")
-			.attr("class", "eventText")
-			.attr("x", xC)
-			.attr("y", yC)
+    	let text = evts.append("text")
+			.attr("class", "text")
+			.attr("x", xC + 5)
+			.attr("y", yC + 10)
 			.attr("text-anchor", "right")
 			.text(evt.t);
+
+      // Background box.
+      let bbox = text.node().getBBox();
+      evts.insert("rect", ".text")
+      .attr("x", bbox.x)
+      .attr("y", bbox.y)
+      .attr("width", bbox.width - 4)
+      .attr("height", bbox.height)
+      .attr("class", "box");
     });
   }
 
