@@ -6,6 +6,28 @@
 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
 
+// Candidate colors (from BBC).
+@bernie-sanders: #4bc6df;
+@hillary-clinton: #005689;
+@donald-trump: #b51800;
+@marco-rubio: #ff5b3a;
+@ted-cruz: #7d0068;
+@john-kasich: #951c55;
+
+.color(@key) {
+  @v: "@{key}";
+
+  &.@{key} {
+    fill: @@v;
+    stroke: @@v;
+    color: @@v;
+
+    .circle {
+      background-color: @@v;
+    }
+  }
+}
+
 #chart {
   font-family: 'PT Sans', sans-serif;
   margin: 0 auto;
@@ -39,13 +61,28 @@
         background: #FFF;
         padding: 4px 8px;
 
+        .color(bernie-sanders);
+        .color(hillary-clinton);
+        .color(donald-trump);
+        .color(marco-rubio);
+        .color(ted-cruz);
+        .color(john-kasich);
+
         &:not(:last-child) {
           margin-bottom: 1px;
         }
 
         .name {
           white-space: nowrap;
-          padding-right: 90px;
+          padding-right: 70px;
+
+          .circle {
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 6px;
+            .border-radius(50%);
+          }
         }
 
         .median {
@@ -60,22 +97,15 @@
   }
 
   svg {
-    .color(@key, @color) {
-      &.@{key} {
-        fill: @color;
-        stroke: @color;
-      }
-    }
-
     .candidate {
       cursor: pointer;
 
-      .color(bernie-sanders, #4bc6df);
-      .color(hillary-clinton, #005689);
-      .color(donald-trump, #b51800);
-      .color(marco-rubio, #ff5b3a);
-      .color(ted-cruz, #7d0068);
-      .color(john-kasich, #951c55);
+      .color(bernie-sanders);
+      .color(hillary-clinton);
+      .color(donald-trump);
+      .color(marco-rubio);
+      .color(ted-cruz);
+      .color(john-kasich);
 
       &.hillary-clinton,
       &.donald-trump {

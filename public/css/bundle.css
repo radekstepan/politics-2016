@@ -383,12 +383,72 @@ th {
   background: #FFF;
   padding: 4px 8px;
 }
+#chart .legend .candidates .candidate.bernie-sanders {
+  fill: #4bc6df;
+  stroke: #4bc6df;
+  color: #4bc6df;
+}
+#chart .legend .candidates .candidate.bernie-sanders .circle {
+  background-color: #4bc6df;
+}
+#chart .legend .candidates .candidate.hillary-clinton {
+  fill: #005689;
+  stroke: #005689;
+  color: #005689;
+}
+#chart .legend .candidates .candidate.hillary-clinton .circle {
+  background-color: #005689;
+}
+#chart .legend .candidates .candidate.donald-trump {
+  fill: #b51800;
+  stroke: #b51800;
+  color: #b51800;
+}
+#chart .legend .candidates .candidate.donald-trump .circle {
+  background-color: #b51800;
+}
+#chart .legend .candidates .candidate.marco-rubio {
+  fill: #ff5b3a;
+  stroke: #ff5b3a;
+  color: #ff5b3a;
+}
+#chart .legend .candidates .candidate.marco-rubio .circle {
+  background-color: #ff5b3a;
+}
+#chart .legend .candidates .candidate.ted-cruz {
+  fill: #7d0068;
+  stroke: #7d0068;
+  color: #7d0068;
+}
+#chart .legend .candidates .candidate.ted-cruz .circle {
+  background-color: #7d0068;
+}
+#chart .legend .candidates .candidate.john-kasich {
+  fill: #951c55;
+  stroke: #951c55;
+  color: #951c55;
+}
+#chart .legend .candidates .candidate.john-kasich .circle {
+  background-color: #951c55;
+}
 #chart .legend .candidates .candidate:not(:last-child) {
   margin-bottom: 1px;
 }
 #chart .legend .candidates .candidate .name {
   white-space: nowrap;
-  padding-right: 90px;
+  padding-right: 70px;
+}
+#chart .legend .candidates .candidate .name .circle {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-right: 6px;
+  -webkit-border-radius: 50%;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 50%;
+  -moz-background-clip: padding;
+  border-radius: 50%;
+  background-clip: padding-box;
 }
 #chart .legend .candidates .candidate .median {
   float: right;
@@ -402,26 +462,50 @@ th {
 #chart svg .candidate.bernie-sanders {
   fill: #4bc6df;
   stroke: #4bc6df;
+  color: #4bc6df;
+}
+#chart svg .candidate.bernie-sanders .circle {
+  background-color: #4bc6df;
 }
 #chart svg .candidate.hillary-clinton {
   fill: #005689;
   stroke: #005689;
+  color: #005689;
+}
+#chart svg .candidate.hillary-clinton .circle {
+  background-color: #005689;
 }
 #chart svg .candidate.donald-trump {
   fill: #b51800;
   stroke: #b51800;
+  color: #b51800;
+}
+#chart svg .candidate.donald-trump .circle {
+  background-color: #b51800;
 }
 #chart svg .candidate.marco-rubio {
   fill: #ff5b3a;
   stroke: #ff5b3a;
+  color: #ff5b3a;
+}
+#chart svg .candidate.marco-rubio .circle {
+  background-color: #ff5b3a;
 }
 #chart svg .candidate.ted-cruz {
   fill: #7d0068;
   stroke: #7d0068;
+  color: #7d0068;
+}
+#chart svg .candidate.ted-cruz .circle {
+  background-color: #7d0068;
 }
 #chart svg .candidate.john-kasich {
   fill: #951c55;
   stroke: #951c55;
+  color: #951c55;
+}
+#chart svg .candidate.john-kasich .circle {
+  background-color: #951c55;
 }
 #chart svg .candidate.hillary-clinton .median,
 #chart svg .candidate.donald-trump .median {

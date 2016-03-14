@@ -30,7 +30,7 @@ export default {
     return d3.svg.axis().scale(y)
     .orient("left")
     .tickSize(-width)
-    .ticks(6)
+    .ticks(7)
     .tickPadding(10)
     .tickFormat((d) => `${d}%`);
   }

@@ -33,11 +33,19 @@ export default React.createClass({
       let candidates = [];
       // Find candidates with odds on this date.
       _.forOwn(cand, (v, k) => {
-        let i = bs(v.d, date, ({d}, find) => {
-          if (d > find) return 1;
-          else if (d < find) return -1;
-          return 0;
-        });
+        // Since we only track changes, check up to 10 days back from this date
+        //  for a match.
+        let i = -1, j = 0;
+        do {
+          i = bs(v.d
+          , moment(date).subtract(j, 'days').format('YYYY-MM-DD')
+          , ({d}, find) => {
+            if (d > find) return 1;
+            else if (d < find) return -1;
+            return 0;
+          });
+          j++;
+        } while (i == -1 && j < 20);
 
         if (i == -1) return;
 
@@ -47,9 +55,12 @@ export default React.createClass({
       // Map into a list.
       candidates = _(candidates).sortBy('m').map((o) => {
         return (
-          <div key={o.k} className={'candidate'/*`candidate ${o.k}`*/}>
+          <div key={o.k} className={cls("candidate", o.k)}>
             <div className="median">{o.m.toFixed(1)}%</div>
-            <div className="name">{name(o.k)}</div>
+            <div className="name">
+              <div className="circle" />
+              {name(o.k)}
+            </div>
           </div>
         );
       }).value().reverse();
@@ -58,7 +69,7 @@ export default React.createClass({
       if (candidates.length) {
         legend = (
           <div className={cls('legend', { 'left': pos, 'right': !pos })}>
-            <div className="date">{date}</div>
+            <div className="date">{moment(date).format('Do MMM YYYY')}</div>
             <div className="candidates">
               {candidates}
             </div>
@@ -126,18 +137,23 @@ export default React.createClass({
 
     // Get the minimum and maximum date, and % chance of 0 to 100.
     x.domain([ new Date(a), new Date(b) ]);
-    y.domain([ 0, maxQ3 ]).nice();
+    y.domain([ 0, Math.min(100, maxQ3 + 5) ]).nice();
 
     // Add an SVG element with the desired dimensions and margin.
     let svg = d3.select(this.refs.el).append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     // Show legend for this day.
+    .on("mouseout", () => this.setState({ 'date': null }))
     .on("mousemove", function() {
       let [ mX, mY ] = d3.mouse(this);
       mX -= margin.left;
       let date = moment(x.invert(mX)).format('YYYY-MM-DD');
-      self.setState({ date, 'pos': (mX / width) > 0.5 });
+      if (date > b) {
+        self.setState({ 'date': null });
+      } else {
+        self.setState({ date, 'pos': (mX / width) > 0.5 });
+      }
     });
 
     let g = svg.append("g")
