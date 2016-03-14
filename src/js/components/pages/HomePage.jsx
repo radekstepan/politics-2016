@@ -2,6 +2,8 @@ import React from 'react';
 
 import Page from '../../lib/PageMixin.js';
 
+import Chart from '../Chart.jsx';
+
 export default React.createClass({
 
   displayName: 'HomePage.jsx',
@@ -9,7 +11,7 @@ export default React.createClass({
   mixins: [ Page ],
 
   render() {
-    return <div>Hello world!</div>;
+    return <Chart />;
   }
 
 });

@@ -3,3 +3,105 @@
 
 // LESS Mixins.
 @import "node_modules/lesshat/build/lesshat.less";
+
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+
+#app {
+  font-family: 'PT Sans', sans-serif;
+
+  h1 {
+    font-size: 26px;
+    text-align: center;
+  }
+}
+
+#chart {
+  height: 600px;
+  position: relative;
+
+  svg {
+    .color(@key, @color) {
+      &.@{key} {
+        fill: @color;
+        stroke: @color;
+      }
+    }
+
+    .candidate {
+      .color(bernie-sanders, #4bc6df);
+      .color(hillary-clinton, #005689);
+      .color(donald-trump, #b51800);
+      .color(marco-rubio, #ff5b3a);
+      .color(ted-cruz, #7d0068);
+      .color(john-kasich, #951c55);
+
+      &.hillary-clinton,
+      &.donald-trump {
+        .median {
+          stroke-width: 1.5px;
+        }
+      }
+
+      .name {
+        text-anchor: start;
+      }
+    }
+
+    path {
+      clip-path: url("#clip");
+
+      &.median {
+        fill: none;
+        stroke-width: 1px;
+      }
+
+      &.quartiles {
+        opacity: 0.2;
+      }
+    }
+
+    line {
+      shape-rendering: crispEdges;
+    }
+
+    .axis {
+      shape-rendering: crispEdges;
+
+      &.x {
+        .tick {
+          line {
+            stroke: #eee;
+          }
+        }
+      }
+
+      &.y {
+        .tick {
+          line {
+            stroke-dasharray: 4,6;
+            stroke: #ddd;
+          }
+        }
+      }
+
+      text {
+        fill: #707782;
+        font-size: 13px;
+      }
+
+      path {
+        display: none;
+      }
+    }
+
+    .events {
+      line {
+        stroke: #555;
+      }
+
+      text {
+        font-size: 12px;
+      }
+    }
+  }
+}

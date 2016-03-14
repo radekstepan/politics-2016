@@ -4,8 +4,6 @@ import Store from '../lib/Store.js';
 
 import actions from '../actions/appActions.js';
 
-import config from '../../config.js';
-
 class AppStore extends Store {
 
   // Initial payload.
