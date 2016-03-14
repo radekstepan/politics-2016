@@ -1,7 +1,7 @@
 {
   "name": "politics-2016",
-  "version": "0.0.0",
-  "description": "US Presidential Election Betting Odds",
+  "version": "0.0.1",
+  "description": "US Presidential Election Predictions",
   "author": "Radek Stepan <dev@radekstepan.com> (http://radekstepan.com)",
   "private": true,
   "license": "AGPL-3.0",
