@@ -28,6 +28,8 @@
     }
 
     .candidate {
+      cursor: pointer;
+
       .color(bernie-sanders, #4bc6df);
       .color(hillary-clinton, #005689);
       .color(donald-trump, #b51800);
@@ -39,6 +41,20 @@
       &.donald-trump {
         .median {
           stroke-width: 1.5px;
+        }
+      }
+
+      &.selected {
+        .quartiles {
+          opacity: 0.5;
+        }
+
+        .median {
+          stroke-width: 2.5px;
+        }
+
+        .name {
+          text-decoration: underline;
         }
       }
 

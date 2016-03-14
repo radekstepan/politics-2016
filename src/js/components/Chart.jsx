@@ -112,7 +112,11 @@ export default React.createClass({
     _.forOwn(cand, (v, k) => {
       let name = _.map(k.split('-'), capitalize).join(' ');
 
-      let c = g.append("g").attr("class", `candidate ${k}`);
+      let cls = (s) => s ? `candidate ${k} selected` : `candidate ${k}`;
+      let c = g.append("g")
+      .attr("class", cls(false))
+      .on("mouseover", () => c.attr("class", cls(true)))
+      .on("mouseout", () => c.attr("class", cls(false)));
 
       // The quartiles.
       c.append('path')

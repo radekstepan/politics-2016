@@ -365,6 +365,9 @@ th {
   height: 600px;
   position: relative;
 }
+#chart svg .candidate {
+  cursor: pointer;
+}
 #chart svg .candidate.bernie-sanders {
   fill: #4bc6df;
   stroke: #4bc6df;
@@ -392,6 +395,15 @@ th {
 #chart svg .candidate.hillary-clinton .median,
 #chart svg .candidate.donald-trump .median {
   stroke-width: 1.5px;
+}
+#chart svg .candidate.selected .quartiles {
+  opacity: 0.5;
+}
+#chart svg .candidate.selected .median {
+  stroke-width: 2.5px;
+}
+#chart svg .candidate.selected .name {
+  text-decoration: underline;
 }
 #chart svg .candidate .name {
   text-anchor: start;
