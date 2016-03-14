@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import d3 from 'd3';
 import _ from 'lodash';
-import path from 'path';
 import capitalize from 'underscore.string/capitalize';
 import bs from 'binarysearch';
 import cls from 'classnames';
@@ -232,22 +231,23 @@ export default React.createClass({
 
     _.each(events, (evt, i) => {
       let xC = x(new Date(evt.d));
-      let yC = 10 + (30 * i);
+      let yC = 10 + (22 * i);
 
       evts.append("line")
-			.attr({
-				'x1': xC,
+      .attr({
+        'x1': xC,
         'x2': xC,
-				'y1': height,
-				'y2': yC })
-			.attr("class", "line");
+        'y1': height,
+        'y2': yC
+      })
+      .attr("class", "line");
 
-    	let text = evts.append("text")
-			.attr("class", "text")
-			.attr("x", xC + 5)
-			.attr("y", yC + 10)
-			.attr("text-anchor", "right")
-			.text(evt.t);
+      let text = evts.append("text")
+      .attr("class", "text")
+      .attr("x", xC + 5)
+      .attr("y", yC + 10)
+      .attr("text-anchor", "right")
+      .text(evt.t);
 
       // Background box.
       let bbox = text.node().getBBox();

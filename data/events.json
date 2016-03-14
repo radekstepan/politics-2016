@@ -1,9 +1,12 @@
 [
   { "d": "2012-11-07", "t": "Obama wins election" },
   { "d": "2015-06-16", "t": "Trump announces candidacy" },
+  { "d": "2015-07-18", "t": "Trump Slams McCain" },
+  { "d": "2015-08-20", "t": "TIME: \"The Donald Has Landed, Deal With It\"" },
   { "d": "2015-09-19", "t": "Trump's 'Obama Muslim' row" },
   { "d": "2015-10-13", "t": "CNN Democratic debate" },
   { "d": "2015-10-29", "t": "CNBC Republican debate" },
+  { "d": "2015-11-19", "t": "Sanders outlines his democratic socialist ideals" },
   { "d": "2016-01-11", "t": "Sanders closes poll lead" },
   { "d": "2016-02-01", "t": "Rubio wins 23% of Iowa caucuses" },
   { "d": "2016-02-09", "t": "Rubio places 5th in New Hampshire primary" },
