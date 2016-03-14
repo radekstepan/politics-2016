@@ -4,7 +4,8 @@ import d3 from 'd3';
 import _ from 'lodash';
 import path from 'path';
 import capitalize from 'underscore.string/capitalize';
-import cb from 'colorbrewer';
+import bs from 'binarysearch';
+import cls from 'classnames';
 
 import axes from '../modules/axes.js';
 
@@ -14,15 +15,69 @@ import cfg from '../../../config.json';
 import cand from '../../../data/candidates';
 import events from '../../../data/events.json';
 
+let name = (k) => _.map(k.split('-'), capitalize).join(' ');
+
 export default React.createClass({
 
   displayName: 'Chart.jsx',
 
+  getInitialState() {
+    return { 'date': null, 'pos': false };
+  },
+
   render() {
-    return <div id="chart" ref="el" />;
+    let { date, pos } = this.state;
+
+    let legend;
+    if (date) {
+      let candidates = [];
+      // Find candidates with odds on this date.
+      _.forOwn(cand, (v, k) => {
+        let i = bs(v.d, date, ({d}, find) => {
+          if (d > find) return 1;
+          else if (d < find) return -1;
+          return 0;
+        });
+
+        if (i == -1) return;
+
+        candidates.push({ k, 'm': v.d[i].m });
+      });
+
+      // Map into a list.
+      candidates = _(candidates).sortBy('m').map((o) => {
+        return (
+          <div key={o.k} className={'candidate'/*`candidate ${o.k}`*/}>
+            <div className="median">{o.m.toFixed(1)}%</div>
+            <div className="name">{name(o.k)}</div>
+          </div>
+        );
+      }).value().reverse();
+
+      // Show the tooltip.
+      if (candidates.length) {
+        legend = (
+          <div className={cls('legend', { 'left': pos, 'right': !pos })}>
+            <div className="date">{date}</div>
+            <div className="candidates">
+              {candidates}
+            </div>
+          </div>
+        );
+      }
+    }
+
+    return (
+      <div id="chart">
+        {legend}
+        <div className="svg" ref="el" />
+      </div>
+    );
   },
 
   componentDidMount() {
+    let self = this;
+
     let a = 'Z', b = '0', maxQ3 = 0;
     _.forOwn(cand, (v, k) => {
       if (v.s.firstD < a) a = v.s.firstD;
@@ -30,13 +85,18 @@ export default React.createClass({
       if (v.s.maxQ3 > maxQ3) maxQ3 = v.s.maxQ3;
     });
 
+    // Fix the beginning of the chart.
     a = '2015-06-12';
 
     // Number of days between the start and end of odds tracking.
     let days = moment(moment(b)).diff(moment(a), 'days');
 
     // Get available space.
-    let { height, width } = this.refs.el.getBoundingClientRect();
+    // let { height, width } = this.refs.el.getBoundingClientRect();
+    let height = 600, width = 920;
+
+    // Limit width.
+    // width = Math.min( width, 920 );
 
     let margin = { 'top': 30, 'right': 160, 'bottom': 40, 'left': 50 };
     width -= margin.left + margin.right;
@@ -72,6 +132,13 @@ export default React.createClass({
     let svg = d3.select(this.refs.el).append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    // Show legend for this day.
+    .on("mousemove", function() {
+      let [ mX, mY ] = d3.mouse(this);
+      mX -= margin.left;
+      let date = moment(x.invert(mX)).format('YYYY-MM-DD');
+      self.setState({ date, 'pos': (mX / width) > 0.5 });
+    });
 
     let g = svg.append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
@@ -108,15 +175,13 @@ export default React.createClass({
     .call(yAxis);
 
     // Add the line paths for each candidate.
-    let colors = cb.Paired[Math.max(_.keys(cand).length, 3)];
     _.forOwn(cand, (v, k) => {
-      let name = _.map(k.split('-'), capitalize).join(' ');
-
-      let cls = (s) => s ? `candidate ${k} selected` : `candidate ${k}`;
       let c = g.append("g")
-      .attr("class", cls(false))
-      .on("mouseover", () => c.attr("class", cls(true)))
-      .on("mouseout", () => c.attr("class", cls(false)));
+      .on("mouseover", () => t(true))
+      .on("mouseout", () => t(false));
+
+      let t = (s) => c.classed({ [`candidate ${k}`]: true, 'selected': s });
+      t(false);
 
       // The quartiles.
       c.append('path')
@@ -138,7 +203,7 @@ export default React.createClass({
   		.attr("transform", `translate(${tX},${tY})`)
   		.attr("dy", ".35em")
       .attr("class", "name")
-  		.text(`${name} ${v.s.lastM.toFixed(1)}%`);
+  		.text(`${name(k)} ${v.s.lastM.toFixed(1)}%`);
     });
 
     // Now for the events.

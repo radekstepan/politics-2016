@@ -354,16 +354,47 @@ td,
 th {
   padding: 0;
 }
-#app {
-  font-family: 'PT Sans', sans-serif;
-}
-#app h1 {
-  font-size: 26px;
-  text-align: center;
-}
 #chart {
-  height: 600px;
+  font-family: 'PT Sans', sans-serif;
+  margin: 0 auto;
   position: relative;
+  width: 920px;
+}
+#chart .legend {
+  position: absolute;
+  top: 30px;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 8px;
+}
+#chart .legend.left {
+  left: 60px;
+}
+#chart .legend.right {
+  right: 0px;
+}
+#chart .legend .date {
+  color: #FFF;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+#chart .legend .candidates .candidate {
+  background: #FFF;
+  padding: 4px 8px;
+}
+#chart .legend .candidates .candidate:not(:last-child) {
+  margin-bottom: 1px;
+}
+#chart .legend .candidates .candidate .name {
+  white-space: nowrap;
+  padding-right: 90px;
+}
+#chart .legend .candidates .candidate .median {
+  float: right;
+}
+#chart .svg {
+  height: 600px;
 }
 #chart svg .candidate {
   cursor: pointer;
@@ -405,6 +436,21 @@ th {
 #chart svg .candidate.selected .name {
   text-decoration: underline;
 }
+#chart svg .candidate .quartiles {
+  opacity: 0.2;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+#chart svg .candidate .median {
+  fill: none;
+  stroke-width: 1px;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
 #chart svg .candidate .name {
   text-anchor: start;
   font-weight: normal;
@@ -414,13 +460,6 @@ th {
 }
 #chart svg path {
   clip-path: url("#clip");
-}
-#chart svg path.median {
-  fill: none;
-  stroke-width: 1px;
-}
-#chart svg path.quartiles {
-  opacity: 0.2;
 }
 #chart svg line {
   shape-rendering: crispEdges;

@@ -6,18 +6,58 @@
 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
 
-#app {
-  font-family: 'PT Sans', sans-serif;
-
-  h1 {
-    font-size: 26px;
-    text-align: center;
-  }
-}
-
 #chart {
-  height: 600px;
+  font-family: 'PT Sans', sans-serif;
+  margin: 0 auto;
   position: relative;
+  width: 920px;
+
+  .legend {
+    position: absolute;
+    top: 30px;
+    font-size: 14px;
+    background: rgba(0,0,0,0.25);
+    padding: 8px;
+
+    &.left {
+      left: 60px;
+    }
+
+    &.right {
+      right: 0px;
+    }
+
+    .date {
+      color: #FFF;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .candidates {
+      .candidate {
+        background: #FFF;
+        padding: 4px 8px;
+
+        &:not(:last-child) {
+          margin-bottom: 1px;
+        }
+
+        .name {
+          white-space: nowrap;
+          padding-right: 90px;
+        }
+
+        .median {
+          float: right;
+        }
+      }
+    }
+  }
+
+  .svg {
+    height: 600px;
+  }
 
   svg {
     .color(@key, @color) {
@@ -58,6 +98,17 @@
         }
       }
 
+      .quartiles {
+        opacity: 0.2;
+        .transition(all 0.2s ease-out);
+      }
+
+      .median {
+        fill: none;
+        stroke-width: 1px;
+        .transition(all 0.2s ease-out);
+      }
+
       .name {
         text-anchor: start;
         font-weight: normal;
@@ -70,15 +121,6 @@
 
     path {
       clip-path: url("#clip");
-
-      &.median {
-        fill: none;
-        stroke-width: 1px;
-      }
-
-      &.quartiles {
-        opacity: 0.2;
-      }
     }
 
     line {
