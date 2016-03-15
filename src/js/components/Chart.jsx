@@ -9,10 +9,8 @@ import FlipMove from 'react-flip-move';
 
 import axes from '../modules/axes.js';
 
-import cfg from '../../../config.json';
-
 // Load the data.
-import cand from '../../../data/candidates';
+import odds from '../../../data/odds';
 import events from '../../../data/events.json';
 
 let name = (k) => _.map(k.split('-'), capitalize).join(' ');
@@ -32,7 +30,7 @@ export default React.createClass({
     if (date) {
       let candidates = [];
       // Find candidates with odds on this date.
-      _.forOwn(cand, (v, k) => {
+      _.forOwn(odds, (v, k) => {
         // Since we only track changes, check up to 10 days back from this date
         //  for a match.
         let i = -1, j = 0;
@@ -92,7 +90,7 @@ export default React.createClass({
     let self = this;
 
     let a = 'Z', b = '0', maxQ3 = 0;
-    _.forOwn(cand, (v, k) => {
+    _.forOwn(odds, (v, k) => {
       if (v.s.firstD < a) a = v.s.firstD;
       if (v.s.lastD > b) b = v.s.lastD;
       if (v.s.maxQ3 > maxQ3) maxQ3 = v.s.maxQ3;
@@ -203,7 +201,7 @@ export default React.createClass({
     .call(yAxis);
 
     // Add the line paths for each candidate.
-    _.forOwn(cand, (v, k) => {
+    _.forOwn(odds, (v, k) => {
       let c = g.append("g")
       .on("mouseover", () => t(true))
       .on("mouseout", () => t(false));
@@ -224,7 +222,7 @@ export default React.createClass({
 
       let tX = width + 10, tY = y(v.s.lastM);
 
-      if (k == 'ted-cruz') tY -= 8;
+      if (k == 'ted-cruz') tY -= 11;
 
       // The name.
       c.append("text")

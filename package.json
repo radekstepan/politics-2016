@@ -1,6 +1,6 @@
 {
   "name": "politics-2016",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "US Presidential Election Predictions",
   "author": "Radek Stepan <dev@radekstepan.com> (http://radekstepan.com)",
   "private": true,
@@ -10,12 +10,14 @@
   },
   "scripts": {
     "start": "make start",
-    "test": "make test"
+    "test": "make test",
+    "data": "cat data/candidates.json | bin/data.js --test"
   },
   "dependencies": {
     "argparse": "^1.0.6",
-    "async": "^1.5.2",
     "colors": "^1.1.2",
+    "highland": "^2.7.1",
+    "ndjson": "^1.4.3",
     "node-static": "^0.7.7",
     "statsjs": "^1.0.6",
     "x-ray": "^2.0.3",

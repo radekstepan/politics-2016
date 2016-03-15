@@ -44,4 +44,7 @@ minify-css:
 test:
 	${MOCHA} ${MOCHA-OPTS} --reporter spec
 
+data:
+	cat data/candidates.json | bin/data.js
+
 .PHONY: test

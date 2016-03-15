@@ -9,7 +9,12 @@ Fetches historical and current betting odds for each US presidential candidate a
 ```bash
 $ nvm use
 $ npm install
-$ make watch
-$ make start-dev
-# politics-2011/0.0.0 (dev) started on port 8080
+$ make start
+# politics-2016/0.0.2 started on port 8080
+```
+
+To update the odds, pipe an NDJSON list of candidates into the following bin file:
+
+```bash
+$ cat ./data/candidates.json | ./bin/data.js
 ```
