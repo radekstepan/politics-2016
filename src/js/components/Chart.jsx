@@ -5,6 +5,7 @@ import _ from 'lodash';
 import capitalize from 'underscore.string/capitalize';
 import bs from 'binarysearch';
 import cls from 'classnames';
+import FlipMove from 'react-flip-move';
 
 import axes from '../modules/axes.js';
 
@@ -70,7 +71,9 @@ export default React.createClass({
           <div className={cls('legend', { 'left': pos, 'right': !pos })}>
             <div className="date">{moment(date).format('Do MMM YYYY')}</div>
             <div className="candidates">
-              {candidates}
+              <FlipMove easing="linear" duration="200">
+                {candidates}
+              </FlipMove>
             </div>
           </div>
         );
@@ -142,9 +145,14 @@ export default React.createClass({
     let svg = d3.select(this.refs.el).append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    // Show legend for this day.
-    .on("mouseout", () => this.setState({ 'date': null }))
+    .on("mouseout", () => {
+      // Hide legend.
+      this.setState({ 'date': null });
+      // Hide the cursor.
+      cursor.style("display", "none");
+    })
     .on("mousemove", function() {
+      // Show legend for this day.
       let [ mX, mY ] = d3.mouse(this);
       mX -= margin.left;
       let date = moment(x.invert(mX)).format('YYYY-MM-DD');
@@ -153,6 +161,10 @@ export default React.createClass({
       } else {
         self.setState({ date, 'pos': (mX / width) > 0.5 });
       }
+      // Move the cursor.
+      cursor
+      .attr({ 'x1': mX, 'x2': mX })
+      .style("display", "block");
     });
 
     let g = svg.append("g")
@@ -258,6 +270,15 @@ export default React.createClass({
       .attr("height", bbox.height)
       .attr("class", "box");
     });
+
+    // Add the moving cursor line.
+    let cursor = g.append("line")
+    .attr({
+      'y1': height,
+      'y2': 0
+    })
+    .attr("class", "cursor")
+    .style("display", "none");
   }
 
 });

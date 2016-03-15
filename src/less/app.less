@@ -33,25 +33,28 @@
   margin: 0 auto;
   position: relative;
   width: 920px;
+  cursor: ew-resize;
 
   .legend {
     position: absolute;
-    top: 30px;
-    font-size: 14px;
-    background: rgba(0,0,0,0.25);
+    top: 40px;
+    font-size: 12px;
+    background: #FFF;
     padding: 8px;
+    border: 1px solid #CCC;
+    .box-shadow(2px 2px 3px 0px rgba(0, 0, 0, 0.35));
+    .border-radius(3px);
 
     &.left {
-      left: 60px;
+      left: 70px;
     }
 
     &.right {
-      right: 0px;
+      right: 10px;
     }
 
     .date {
-      color: #FFF;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
       margin-bottom: 4px;
     }
@@ -69,7 +72,7 @@
         .color(john-kasich);
 
         &:not(:last-child) {
-          margin-bottom: 1px;
+          border-bottom: 1px solid #CCC;
         }
 
         .name {
@@ -77,11 +80,11 @@
           padding-right: 70px;
 
           .circle {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             display: inline-block;
             margin-right: 6px;
-            .border-radius(50%);
+            //.border-radius(50%);
           }
         }
 
@@ -155,6 +158,10 @@
 
     line {
       shape-rendering: crispEdges;
+
+      &.cursor {
+        stroke: #333;
+      }
     }
 
     .axis {
@@ -188,12 +195,15 @@
     }
 
     .events {
+      pointer-events: none;
+
       line {
-        stroke: #555;
+        stroke: #999;
       }
 
       text {
-        font-size: 12px;
+        color: #999;
+        font-size: 11px;
       }
 
       .box {
