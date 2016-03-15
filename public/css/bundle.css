@@ -459,9 +459,6 @@ th {
 #chart .svg {
   height: 600px;
 }
-#chart svg .candidate {
-  cursor: pointer;
-}
 #chart svg .candidate.bernie-sanders {
   fill: #8ecc64;
   stroke: #8ecc64;
@@ -525,22 +522,23 @@ th {
 }
 #chart svg .candidate .quartiles {
   opacity: 0.2;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
 }
 #chart svg .candidate .median {
   fill: none;
   stroke-width: 1px;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
 }
 #chart svg .candidate .name {
   text-anchor: start;
   font-weight: normal;
+  cursor: pointer;
 }
 #chart svg text {
   text-rendering: optimizeLegibility;

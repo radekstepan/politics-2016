@@ -100,8 +100,6 @@
 
   svg {
     .candidate {
-      cursor: pointer;
-
       .color(bernie-sanders);
       .color(hillary-clinton);
       .color(donald-trump);
@@ -132,18 +130,19 @@
 
       .quartiles {
         opacity: 0.2;
-        .transition(all 0.2s ease-out);
+        .transition(all 0.2s linear);
       }
 
       .median {
         fill: none;
         stroke-width: 1px;
-        .transition(all 0.2s ease-out);
+        .transition(all 0.2s linear);
       }
 
       .name {
         text-anchor: start;
         font-weight: normal;
+        cursor: pointer;
       }
     }
 
