@@ -359,7 +359,6 @@ th {
   margin: 0 auto;
   position: relative;
   width: 920px;
-  cursor: ew-resize;
 }
 #chart .legend {
   position: absolute;

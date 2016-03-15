@@ -158,13 +158,14 @@ export default React.createClass({
       let date = moment(x.invert(mX)).format('YYYY-MM-DD');
       if (date > b) {
         self.setState({ 'date': null });
+        cursor.style("display", "none");
       } else {
         self.setState({ date, 'pos': (mX / width) > 0.5 });
+        // Move the cursor.
+        cursor
+        .attr({ 'x1': mX, 'x2': mX })
+        .style("display", "block");
       }
-      // Move the cursor.
-      cursor
-      .attr({ 'x1': mX, 'x2': mX })
-      .style("display", "block");
     });
 
     let g = svg.append("g")
