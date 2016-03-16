@@ -11,7 +11,7 @@
   "scripts": {
     "start": "make start",
     "test": "make test",
-    "data": "cat data/candidates.json | bin/data.js --test"
+    "data": "cat data/candidates.json | bin/data.js"
   },
   "dependencies": {
     "argparse": "^1.0.6",
