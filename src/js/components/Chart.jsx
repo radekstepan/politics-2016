@@ -244,7 +244,7 @@ export default React.createClass({
 
     _.each(events, (evt, i) => {
       let xC = x(new Date(evt.d));
-      let yC = 10 + (22 * i);
+      let yC = 10 + (20 * i);
 
       evts.append("line")
       .attr({
