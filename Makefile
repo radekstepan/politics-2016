@@ -47,4 +47,4 @@ test:
 data:
 	cat data/candidates.json | bin/data.js
 
-.PHONY: test
+.PHONY: test data
