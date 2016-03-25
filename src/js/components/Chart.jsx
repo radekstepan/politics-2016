@@ -224,7 +224,7 @@ export default React.createClass({
 
       if (k == 'ted-cruz') tY -= 9;
       if (k == 'bernie-sanders') tY -= 20;
-      if (k == 'john-kasich') tY += 4;
+      if (k == 'john-kasich') tY += 3;
 
       // The name.
       c.append("text")
