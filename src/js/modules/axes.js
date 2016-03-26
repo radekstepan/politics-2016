@@ -23,7 +23,7 @@ export default {
     .orient("top")
     .tickSize(height)
     .tickFormat((d) => d.getFullYear())
-    .ticks(span / 365)
+    .ticks(span / 365);
   },
 
   points(width, y) {

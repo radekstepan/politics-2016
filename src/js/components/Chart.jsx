@@ -143,7 +143,7 @@ export default React.createClass({
     let svg = d3.select(this.refs.el).append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .on("mouseout", () => {
+    .on("mouseleave", () => {
       // Hide legend.
       this.setState({ 'date': null });
       // Hide the cursor.
@@ -203,8 +203,8 @@ export default React.createClass({
     // Add the line paths for each candidate.
     _.forOwn(odds, (v, k) => {
       let c = g.append("g")
-      .on("mouseover", () => t(true))
-      .on("mouseout", () => t(false));
+      .on("mouseenter", () => t(true))
+      .on("mouseleave", () => t(false));
 
       let t = (s) => c.classed({ [`candidate ${k}`]: true, 'selected': s });
       t(false);
@@ -222,9 +222,9 @@ export default React.createClass({
 
       let tX = width + 10, tY = y(v.s.lastM);
 
-      if (k == 'ted-cruz') tY -= 9;
+      if (k == 'ted-cruz') tY -= 8;
       if (k == 'bernie-sanders') tY -= 20;
-      if (k == 'john-kasich') tY += 3;
+      if (k == 'john-kasich') tY += 4;
 
       // The name.
       c.append("text")
