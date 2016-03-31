@@ -222,9 +222,9 @@ export default React.createClass({
 
       let tX = width + 10, tY = y(v.s.lastM);
 
-      if (k == 'ted-cruz') tY -= 8;
       if (k == 'bernie-sanders') tY -= 0;
-      if (k == 'john-kasich') tY += 5;
+      if (k == 'ted-cruz') tY -= 4;
+      if (k == 'john-kasich') tY += 9;
 
       // The name.
       c.append("text")
