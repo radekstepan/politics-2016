@@ -222,7 +222,7 @@ export default React.createClass({
 
       let tX = width + 10, tY = y(v.s.lastM);
 
-      if (k == 'bernie-sanders') tY -= 4;
+      if (k == 'bernie-sanders') tY -= 7;
       if (k == 'ted-cruz') tY -= 8;
 
       // The name.
