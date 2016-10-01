@@ -14,7 +14,7 @@ module.exports=[
   { "d": "2016-07-26", "t": "Clinton nominated" },
   { "d": "2016-07-30", "t": "Trump and Muslim soldier" },
   { "d": "2016-08-10", "t": "Trump gun rights remarks" },
-  { "d": "2016-10-27", "t": "CNN Debate" }
+  { "d": "2016-09-27", "t": "CNN Debate" }
 ]
 
 },{}],2:[function(require,module,exports){
