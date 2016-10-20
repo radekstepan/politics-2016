@@ -16,17 +16,18 @@ module.exports=[
   { "d": "2016-08-10", "t": "Trump gun rights remarks" },
   { "d": "2016-09-27", "t": "First debate" },
   { "d": "2016-10-07", "t": "Trump's tape scandal" },
-  { "d": "2016-10-09", "t": "Second debate" }
+  { "d": "2016-10-09", "t": "Second debate" },
+  { "d": "2016-10-19", "t": "Third debate" }
 ]
 
 },{}],2:[function(require,module,exports){
 module.exports={
   "s": {
-    "lastM": 19,
+    "lastM": 18.41,
     "maxM": 39.08,
     "maxQ3": 40.04,
     "firstD": "2012-10-08",
-    "lastD": "2016-10-19"
+    "lastD": "2016-10-20"
   },
   "d": [
     {
@@ -3671,21 +3672,28 @@ module.exports={
     },
     {
       "d": "2016-10-19",
-      "m": 19,
+      "m": 18.81,
+      "q": 0.91,
+      "h": 22.22,
+      "l": 16.52
+    },
+    {
+      "d": "2016-10-20",
+      "m": 18.41,
       "q": 0.91,
       "h": 20,
-      "l": 16.52
+      "l": 16.25
     }
   ]
 }
 },{}],3:[function(require,module,exports){
 module.exports={
   "s": {
-    "lastM": 84.77,
+    "lastM": 85.88,
     "maxM": 85.91,
     "maxQ3": 86.81,
     "firstD": "2012-06-29",
-    "lastD": "2016-10-19"
+    "lastD": "2016-10-20"
   },
   "d": [
     {
@@ -8499,10 +8507,17 @@ module.exports={
     },
     {
       "d": "2016-10-19",
-      "m": 84.77,
-      "q": 1.19,
+      "m": 85.4,
+      "q": 0.87,
       "h": 87.5,
       "l": 79.17
+    },
+    {
+      "d": "2016-10-20",
+      "m": 85.88,
+      "q": 1.03,
+      "h": 87.5,
+      "l": 84.21
     }
   ]
 }
